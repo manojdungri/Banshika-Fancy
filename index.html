@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Banshika Fancy</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>✨ Banshika Fancy ✨</h1>
+
+        <nav>
+
+            <a href="#">Home</a>
+
+            <a href="#products">Jewellery</a>
+
+            <a href="#cart">🛒 Cart</a>
+
+            <a href="#about">About</a>
+
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h2>
+            Beautiful Jewellery for Beautiful Girls
+        </h2>
+
+        <p>
+            Elegant • Stylish • Affordable
+        </p>
+
+        <button onclick="scrollToProducts()">
+            Shop Now
+        </button>
+
+    </section>
+
+
+
+    <!-- SEARCH & CATEGORIES -->
+
+    <section class="shop-tools">
+
+        <h2>
+            💎 Find Your Favourite Jewellery
+        </h2>
+
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search jewellery..."
+            onkeyup="searchProducts()"
+        >
+
+
+        <div class="categories">
+
+            <button onclick="filterProducts('all')">
+                All
+            </button>
+
+            <button onclick="filterProducts('earrings')">
+                💎 Earrings
+            </button>
+
+            <button onclick="filterProducts('chain')">
+                📿 Chains
+            </button>
+
+            <button onclick="filterProducts('bracelet')">
+                💕 Bracelets
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCTS -->
+
+    <section
+        class="products"
+        id="products">
+
+        <h2>
+            💎 Our Jewellery
+        </h2>
+
+
+        <div
+            class="product-container"
+            id="productContainer"
+        >
+
+
+            <!-- EARRINGS -->
+
+            <div
+                class="product"
+                data-category="earrings"
+                data-name="Beautiful Earrings"
+            >
+
+                <div class="badge">
+                    🔥 Best Seller
+                </div>
+
+
+                <img
+                    src="images/earrings.jpg"
+                    alt="Beautiful Earrings"
+                >
+
+
+                <h3>
+                    Beautiful Earrings
+                </h3>
+
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.8</span>
+                </div>
+
+
+                <div class="price">
+
+                    <span class="old-price">
+                        ₹399
+                    </span>
+
+                    <span class="new-price">
+                        ₹299
+                    </span>
+
+                </div>
+
+
+                <button
+                    onclick="addToCart(
+                        'Beautiful Earrings',
+                        299
+                    )"
+                >
+                    🛒 Add to Cart
+                </button>
+<button
+    class="buy-now-btn"
+    onclick="buyNow('Beautiful Earrings', 299)"
+>
+    🛍️ Buy Now
+</button>
+
+
+                <button
+                    class="details-btn"
+                    onclick="showProductDetails(
+                        'Beautiful Earrings',
+                        '₹299',
+                        'Beautiful stylish earrings perfect for daily wear and special occasions.'
+                    )"
+                >
+                    👀 View Details
+                </button>
+
+            </div>
+
+
+
+            <!-- CHAIN -->
+
+            <div
+                class="product"
+                data-category="chain"
+                data-name="Beautiful Chain"
+            >
+
+                <div class="badge new">
+                    ✨ New
+                </div>
+
+
+                <img
+                    src="images/chain.jpg"
+                    alt="Beautiful Chain"
+                >
+
+
+                <h3>
+                    Beautiful Chain
+                </h3>
+
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.7</span>
+                </div>
+
+
+                <div class="price">
+
+                    <span class="old-price">
+                        ₹699
+                    </span>
+
+                    <span class="new-price">
+                        ₹499
+                    </span>
+
+                </div>
+
+
+                <button
+                    onclick="addToCart(
+                        'Beautiful Chain',
+                        499
+                    )"
+                >
+                    🛒 Add to Cart
+                </button>
+<button
+    class="buy-now-btn"
+    onclick="buyNow('Beautiful Chain', 499)"
+>
+    🛍️ Buy Now
+</button>
+
+
+                <button
+                    class="details-btn"
+                    onclick="showProductDetails(
+                        'Beautiful Chain',
+                        '₹499',
+                        'Elegant and stylish chain suitable for parties, functions and daily wear.'
+                    )"
+                >
+                    👀 View Details
+                </button>
+
+            </div>
+
+
+
+            <!-- BRACELET -->
+
+            <div
+                class="product"
+                data-category="bracelet"
+                data-name="Beautiful Bracelet"
+            >
+
+                <div class="badge popular">
+                    ❤️ Popular
+                </div>
+
+
+                <img
+                    src="images/bracelet.jpg"
+                    alt="Beautiful Bracelet"
+                >
+
+
+                <h3>
+                    Beautiful Bracelet
+                </h3>
+
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.9</span>
+                </div>
+
+
+                <div class="price">
+
+                    <span class="old-price">
+                        ₹549
+                    </span>
+
+                    <span class="new-price">
+                        ₹399
+                    </span>
+
+                </div>
+
+
+                <button
+                    onclick="addToCart(
+                        'Beautiful Bracelet',
+                        399
+                    )"
+                >
+                    🛒 Add to Cart
+                </button>
+<button
+    class="buy-now-btn"
+    onclick="buyNow('Beautiful Bracelet', 399)"
+>
+    🛍️ Buy Now
+</button>
+
+
+                <button
+                    class="details-btn"
+                    onclick="showProductDetails(
+                        'Beautiful Bracelet',
+                        '₹399',
+                        'Beautiful bracelet with a stylish look, perfect for gifting and everyday fashion.'
+                    )"
+                >
+                    👀 View Details
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCT DETAILS -->
+
+    <div
+        class="modal"
+        id="productModal"
+    >
+
+        <div class="modal-content">
+
+            <span
+                class="close"
+                onclick="closeProductDetails()"
+            >
+                &times;
+            </span>
+
+
+            <h2 id="modalName">
+                Product Name
+            </h2>
+
+
+            <h3 id="modalPrice">
+                ₹0
+            </h3>
+
+
+            <p id="modalDescription">
+                Product description
+            </p>
+
+
+            <button
+                onclick="closeProductDetails()"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CART -->
+
+    <section
+        class="cart"
+        id="cart">
+
+        <h2>
+            🛒 Your Cart
+        </h2>
+
+
+        <div id="cart-items">
+
+            <p>
+                Your cart is empty.
+            </p>
+
+        </div>
+
+
+        <h3 id="cart-total">
+            Total: ₹0
+        </h3>
+
+
+
+        <!-- CHECKOUT -->
+
+        <div class="checkout">
+
+            <h2>
+                📦 Delivery Details
+            </h2>
+
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Your Name"
+            >
+
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="Mobile Number"
+                maxlength="10"
+            >
+
+
+            <textarea
+                id="customerAddress"
+                placeholder="Full Address"
+            ></textarea>
+
+
+            <input
+                type="text"
+                id="customerCity"
+                placeholder="City"
+            >
+
+
+            <input
+                type="text"
+                id="customerPincode"
+                placeholder="Pincode"
+                maxlength="6"
+            >
+
+
+            <!-- ONLINE PAYMENT -->
+
+            <a
+                class="payment-btn"
+                href="https://rzp.io/rzp/Srr1qp9h"
+                target="_blank"
+            >
+                💳 Pay Online
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <button
+                class="whatsapp-btn"
+                onclick="orderOnWhatsApp()"
+            >
+                📲 Order on WhatsApp
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ABOUT -->
+
+    <section
+        class="about"
+        id="about">
+
+        <h2>
+            About Banshika Fancy
+        </h2>
+
+
+        <p>
+
+            Welcome to Banshika Fancy.
+
+            We provide beautiful and stylish
+            jewellery for girls.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- CONTACT -->
+
+    <section
+        class="contact"
+        id="contact">
+
+        <h2>
+            Contact Us
+        </h2>
+
+
+        <p>
+            📲 WhatsApp: 7681004565
+        </p>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Banshika Fancy
+        </p>
+
+        <p>
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
