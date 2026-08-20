@@ -79,6 +79,39 @@ function addToCart(name, price) {
 
 
 // ==========================
+// BUY NOW
+// ==========================
+
+function buyNow(name, price) {
+
+    cart = [];
+
+
+    cart.push({
+
+        name: name,
+
+        price: price,
+
+        quantity: 1
+
+    });
+
+
+    updateCart();
+
+
+    document
+        .getElementById("cart")
+        .scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+}
+
+
+// ==========================
 // UPDATE CART
 // ==========================
 
@@ -95,6 +128,13 @@ function updateCart() {
         );
 
 
+    if (!cartItems || !cartTotal) {
+
+        return;
+
+    }
+
+
     if (cart.length === 0) {
 
         cartItems.innerHTML =
@@ -104,10 +144,12 @@ function updateCart() {
             "Total: ₹0";
 
         return;
+
     }
 
 
     cartItems.innerHTML = "";
+
 
     let total = 0;
 
@@ -115,9 +157,12 @@ function updateCart() {
     cart.forEach(
         (item, index) => {
 
-            total +=
+            const itemTotal =
                 item.price *
                 item.quantity;
+
+
+            total += itemTotal;
 
 
             const cartItem =
@@ -199,7 +244,7 @@ function updateCart() {
 
 
 // ==========================
-// QUANTITY + 
+// INCREASE QUANTITY
 // ==========================
 
 function increaseQuantity(index) {
@@ -211,7 +256,7 @@ function increaseQuantity(index) {
 
 
 // ==========================
-// QUANTITY -
+// DECREASE QUANTITY
 // ==========================
 
 function decreaseQuantity(index) {
@@ -234,7 +279,7 @@ function decreaseQuantity(index) {
 
 
 // ==========================
-// REMOVE
+// REMOVE FROM CART
 // ==========================
 
 function removeFromCart(index) {
@@ -251,29 +296,47 @@ function removeFromCart(index) {
 
 function scrollToProducts() {
 
-    document
-        .getElementById("products")
-        .scrollIntoView({
+    const productsSection =
+        document.getElementById(
+            "products"
+        );
+
+
+    if (productsSection) {
+
+        productsSection.scrollIntoView({
 
             behavior: "smooth"
 
         });
+
+    }
 }
 
 
 // ==========================
-// SEARCH
+// SEARCH PRODUCTS
 // ==========================
 
 function searchProducts() {
 
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    if (!searchInput) {
+
+        return;
+
+    }
+
+
     const searchText =
-        document
-            .getElementById(
-                "searchInput"
-            )
-            .value
-            .toLowerCase();
+        searchInput.value
+            .toLowerCase()
+            .trim();
 
 
     const productCards =
@@ -286,11 +349,11 @@ function searchProducts() {
         product => {
 
             const name =
-                product
-                    .getAttribute(
+                (
+                    product.getAttribute(
                         "data-name"
-                    )
-                    .toLowerCase();
+                    ) || ""
+                ).toLowerCase();
 
 
             if (
@@ -354,13 +417,21 @@ function filterProducts(category) {
     );
 
 
-    document
-        .getElementById("products")
-        .scrollIntoView({
+    const productsSection =
+        document.getElementById(
+            "products"
+        );
+
+
+    if (productsSection) {
+
+        productsSection.scrollIntoView({
 
             behavior: "smooth"
 
         });
+
+    }
 }
 
 
@@ -374,48 +445,81 @@ function showProductDetails(
     description
 ) {
 
-    document
-        .getElementById(
+    const modalName =
+        document.getElementById(
             "modalName"
-        )
-        .innerText = name;
+        );
 
 
-    document
-        .getElementById(
+    const modalPrice =
+        document.getElementById(
             "modalPrice"
-        )
-        .innerText = price;
+        );
 
 
-    document
-        .getElementById(
+    const modalDescription =
+        document.getElementById(
             "modalDescription"
-        )
-        .innerText = description;
+        );
 
 
-    document
-        .getElementById(
+    const productModal =
+        document.getElementById(
             "productModal"
-        )
-        .style.display =
+        );
+
+
+    if (modalName) {
+
+        modalName.innerText =
+            name;
+
+    }
+
+
+    if (modalPrice) {
+
+        modalPrice.innerText =
+            price;
+
+    }
+
+
+    if (modalDescription) {
+
+        modalDescription.innerText =
+            description;
+
+    }
+
+
+    if (productModal) {
+
+        productModal.style.display =
             "flex";
+
+    }
 }
 
 
 // ==========================
-// CLOSE DETAILS
+// CLOSE PRODUCT DETAILS
 // ==========================
 
 function closeProductDetails() {
 
-    document
-        .getElementById(
+    const productModal =
+        document.getElementById(
             "productModal"
-        )
-        .style.display =
+        );
+
+
+    if (productModal) {
+
+        productModal.style.display =
             "none";
+
+    }
 }
 
 
@@ -425,6 +529,8 @@ function closeProductDetails() {
 
 function orderOnWhatsApp() {
 
+    // CART CHECK
+
     if (cart.length === 0) {
 
         alert(
@@ -432,8 +538,11 @@ function orderOnWhatsApp() {
         );
 
         return;
+
     }
 
+
+    // CUSTOMER DETAILS
 
     const customerName =
         document
@@ -480,15 +589,22 @@ function orderOnWhatsApp() {
             .trim();
 
 
-    if (customerName === "") {
+    // NAME VALIDATION
+
+    if (
+        customerName === ""
+    ) {
 
         alert(
             "Please apna naam enter karein."
         );
 
         return;
+
     }
 
+
+    // PHONE VALIDATION
 
     if (
         customerPhone.length !== 10 ||
@@ -500,28 +616,41 @@ function orderOnWhatsApp() {
         );
 
         return;
+
     }
 
 
-    if (customerAddress === "") {
+    // ADDRESS VALIDATION
+
+    if (
+        customerAddress === ""
+    ) {
 
         alert(
             "Please apna full address enter karein."
         );
 
         return;
+
     }
 
 
-    if (customerCity === "") {
+    // CITY VALIDATION
+
+    if (
+        customerCity === ""
+    ) {
 
         alert(
             "Please apna city enter karein."
         );
 
         return;
+
     }
 
+
+    // PINCODE VALIDATION
 
     if (
         customerPincode.length !== 6 ||
@@ -533,87 +662,123 @@ function orderOnWhatsApp() {
         );
 
         return;
+
     }
 
 
+    // ==========================
+    // CREATE WHATSAPP MESSAGE
+    // ==========================
+
     let message =
-        "🛍️ *Banshika Fancy Order*";
+        "🛍️ *Banshika Fancy ORDER*";
 
 
     message +=
-        "\n\n👤 Customer: " +
+        "\n\n👤 *CUSTOMER DETAILS*";
+
+
+    message +=
+        "\nName: " +
         customerName;
 
 
     message +=
-        "\n📱 Mobile: " +
+        "\nMobile: " +
         customerPhone;
 
 
     message +=
-        "\n🏠 Address: " +
-        customerAddress;
-
-
-    message +=
-        "\n🏙️ City: " +
-        customerCity;
-
-
-    message +=
-        "\n📮 Pincode: " +
-        customerPincode;
-
-
-    message +=
-        "\n\n💎 *Products:*";
+        "\n\n📦 *ORDER ITEMS*";
 
 
     let total = 0;
 
 
     cart.forEach(
-        item => {
+        (item, index) => {
 
             const itemTotal =
                 item.price *
                 item.quantity;
 
 
-            total += itemTotal;
+            total +=
+                itemTotal;
 
 
             message +=
-                "\n\n• " +
+                "\n\n" +
+                (index + 1) +
+                ". " +
                 item.name;
 
 
             message +=
-                "\n  Quantity: " +
+                "\n   Qty: " +
                 item.quantity;
 
 
             message +=
-                "\n  Price: ₹" +
+                "\n   Price: ₹" +
                 itemTotal;
 
         }
     );
 
 
+    // TOTAL
+
     message +=
-        "\n\n💰 *Total: ₹" +
+        "\n\n💰 *TOTAL: ₹" +
         total +
         "*";
 
 
-    message +=
-        "\n\nPlease confirm my order. 🙏";
+    // DELIVERY ADDRESS
 
+    message +=
+        "\n\n🏠 *DELIVERY ADDRESS*";
+
+
+    message +=
+        "\nAddress: " +
+        customerAddress;
+
+
+    message +=
+        "\nCity: " +
+        customerCity;
+
+
+    message +=
+        "\nPincode: " +
+        customerPincode;
+
+
+    // PAYMENT
+
+    message +=
+        "\n\n💳 Payment: To be confirmed";
+
+
+    // FINAL MESSAGE
+
+    message +=
+        "\n\n🙏 Please confirm my order.";
+
+
+    // ==========================
+    // WHATSAPP NUMBER
+    // ==========================
 
     const phoneNumber =
         "917681004565";
 
+
+    // ==========================
+    // WHATSAPP URL
+    // ==========================
 
     const whatsappURL =
         "https://wa.me/" +
@@ -624,24 +789,8 @@ function orderOnWhatsApp() {
         );
 
 
+    // OPEN WHATSAPP
+
     window.location.href =
         whatsappURL;
-}
-function buyNow(name, price) {
-
-    cart = [];
-
-    cart.push({
-        name: name,
-        price: price,
-        quantity: 1
-    });
-
-    updateCart();
-
-    document
-        .getElementById("cart")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
 }
